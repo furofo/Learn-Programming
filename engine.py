@@ -1,5 +1,5 @@
 ### SQL Alchemy Example
-from sqlalchemy import Engine, text, create_engine, Column, Integer, String
+from sqlalchemy import Engine, text, create_engine, Column, Integer, String, select
 from sqlalchemy.orm import Session, declarative_base, sessionmaker
 
 # Define the base class for the ORM
@@ -30,8 +30,7 @@ user8 = User(name="Frank", age=5)
 user9 = User(name="Grace", age=5)
 user10 = User(name="Hank", age=10)
 
-# Define a SQL statement
-stmt = text("SELECT name FROM User WHERE age  < :age ORDER BY name")
+
 
 # Use a session to add objects and commit them to the database
 with Session.begin() as session:
@@ -48,6 +47,13 @@ with Session.begin() as session:
 
 # Query the database using the defined statement
 with Session() as session:
-    result = session.execute(stmt, {'age': 10})
-    for row in result:
-        print(f"Name: {row.name}")
+    # query for ``User`` objects
+    statement = select(User).filter_by(name="Grace")
+    result = session.execute(statement)
+# list of ``User`` objects
+    user_obj = session.scalars(statement).all()
+
+    # list of Row objects
+    rows = session.execute(statement).all()
+    for row in rows:
+        print(row.User.name)
