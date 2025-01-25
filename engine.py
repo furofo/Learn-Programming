@@ -1,6 +1,6 @@
 ### SQL Alchemy Example
 from sqlalchemy import Engine, text, create_engine, Column, Integer, String
-from sqlalchemy.orm import Session, declarative_base
+from sqlalchemy.orm import Session, declarative_base, sessionmaker
 
 # Define the base class for the ORM
 Base = declarative_base()
@@ -14,7 +14,7 @@ class Sample(Base):
 
 # Create an in-memory SQLite database
 engine = create_engine("sqlite+pysqlite:///:memory:", echo=True)
-
+Session = sessionmaker(engine)
 # Create the table
 Base.metadata.create_all(engine)
 
@@ -26,7 +26,7 @@ some_other_object = Sample(x=2, y=20)
 stmt = text("SELECT x, y FROM some_table WHERE y > :y ORDER BY x, y")
 
 # Use a session to add objects and commit them to the database
-with Session(engine) as session:
+with Session() as session:
     session.begin()
     try:
         session.add(some_object)
@@ -38,7 +38,7 @@ with Session(engine) as session:
         session.commit()
 
 # Query the database using the defined statement
-with Session(engine) as session:
+with Session() as session:
     result = session.execute(stmt, {'y': 15})
     for row in result:
         print(f"x: {row.x}, y: {row.y}")
