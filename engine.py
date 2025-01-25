@@ -26,16 +26,10 @@ some_other_object = Sample(x=2, y=20)
 stmt = text("SELECT x, y FROM some_table WHERE y > :y ORDER BY x, y")
 
 # Use a session to add objects and commit them to the database
-with Session() as session:
-    session.begin()
-    try:
-        session.add(some_object)
-        session.add(some_other_object)
-    except:
-        session.rollback()
-        raise
-    else:
-        session.commit()
+with Session.begin() as session:
+    session.add(some_object)
+    session.add(some_other_object)
+
 
 # Query the database using the defined statement
 with Session() as session:
