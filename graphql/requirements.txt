@@ -1,0 +1,4 @@
+flask
+ariadne
+flask-SQLAlchemy
+flask-Cors
