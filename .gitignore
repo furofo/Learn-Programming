@@ -1,2 +1,4 @@
 .approval_tests_temp/
 venv/
+bin/
+obj/
