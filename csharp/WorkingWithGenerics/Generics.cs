@@ -9,9 +9,9 @@ Swap(ref person1, ref person2);
 Console.WriteLine($"After swap: {person1.Name}, {person2.Name}");
 
 
-static void Swap(ref object a, ref object b)
+static void Swap<T>(ref T a, ref T b)
 {
-    object temp = a;
+    T temp = a;
     a = b;
     b = temp;
 }
