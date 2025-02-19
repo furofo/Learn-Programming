@@ -13,6 +13,10 @@ static void Swap<T>(ref T a, ref T b)
     b = temp;
 }
 
+Nullable<int> x = 7;
+Nullable<DateTime> maybeDate = null;
+//maybeDate = DateTime.Now;
+Console.WriteLine($"maybeDate: {maybeDate}");
 public class Person
 {
     public string Name { get; set; } = string.Empty;
