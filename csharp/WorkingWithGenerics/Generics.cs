@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-Person person1 = new Person { Name = "Alice", Age = 25, Id = 1 };
-Person person2 = new Person { Name = "Bob", Age = 30, Id = 2 };
-
-Console.WriteLine($"Before swap: {person1.Name}, {person2.Name}");
-Swap(ref person1, ref person2);
-Console.WriteLine($"After swap: {person1.Name}, {person2.Name}");
-
+string jsonPerson = "{\"Name\":\"Green\",\"Age\":25,\"Id\":1}";
+// deseralize json to object
+var pj = System.Text.Json.JsonSerializer.Deserialize<Person>(jsonPerson);
+Console.WriteLine($"{pj?.Name} is a json persons");
 
 static void Swap<T>(ref T a, ref T b)
 {
