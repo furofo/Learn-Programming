@@ -1,21 +1,20 @@
 ﻿using WorkingWithGenerics.Models;
 using WorkingWithGenerics.Mappers;
 
-var c = new Customer
-{
-    Id = 1,
-    Name = "John Doe who used to be Customer",
-    Age = 30,
-    CreateDate = new DateOnly(2021, 10, 1)
-};
+// Using the custom constructor
+var customer1 = new Customer(30, 1, "Jon Doe");
 
-var p = new Person
-{
-    Id = 1,
-    Name = "John Doe Person",
-    Age = 30
-};
+// var p = new Person
+// {
+//     Id = 1,
+//     Name = "John Doe Person",
+//     Age = 30
+// };
+
+//var p = new Person();
+
+var per = new Person { Id = 1, Name = "John Doe", Age = 30 };
 
 var mapper = new CustomerToPersonMapper();
-var person = mapper.Map(c);
+var person = mapper.Map(customer1);
 Console.WriteLine($"Person: {person.Name}");
