@@ -21,3 +21,7 @@ var personToCustomerMapper = new PersonToCustomerMapper();
 personToCustomerMapper.Map(per);
 Console.WriteLine($"Person  mappe dfrom customr name is : {person.Name}");
 Console.WriteLine($"Customer mapped from person name is : {customer1.Name}");
+
+// ToDo: practice makes purrfect
+
+//TODO: hello there
